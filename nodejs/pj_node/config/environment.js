@@ -1,24 +1,3 @@
 const environments = {
-      development: {
-        mysql: {
-            username: 'root',
-            password: 'root',
-            database: 'node_api_codelab_dev'
-        }
-      },
-      test: {
-          mysql: {
-              username: 'root',
-              password: 'root',
-              database: 'node_api_codelab_test'
-        } 
-      },
-
-      production:{
-                  
-     }
-}
-
-const nodeEnv = process.env.NODE_ENV || 'development';
-
-module.exports = environments[nodeEnv];
+  tibero : "DRIVER={Tibero 6 ODBC Driver};SERVER=127.0.0.1;PORT=8629;UID=HR;PWD=tibero;DATABASE=tibero"
+};
