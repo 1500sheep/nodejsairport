@@ -1,4 +1,3 @@
-const models = require('./models');
 const async = require('async');
 const parseString = require("xml2js").parseString;
 var request = require('request');
@@ -31,33 +30,33 @@ exports.international2= (req,res)=>{
 
     async.series([
         function(callback){
-            models.Airportschedule.findAndCountAll({
-                where:{
-                    boardingKor:req.body.interdepart,
-                    arrivedKor:req.body.interarrive
-                }
-            }).then(function(resultA){
-                if(!resultA){
-                    res.redirect('booking/international1');
-                }
-                console.log("국제 공항 갯수A :  "+resultA.count);
-                console.log("국제 공항 갯수A :  "+resultA.rows);
-                callback(null,resultA);
-            })
+            // models.Airportschedule.findAndCountAll({
+            //     where:{
+            //         boardingKor:req.body.interdepart,
+            //         arrivedKor:req.body.interarrive
+            //     }
+            // }).then(function(resultA){
+            //     if(!resultA){
+            //         res.redirect('booking/international1');
+            //     }
+            //     console.log("국제 공항 갯수A :  "+resultA.count);
+            //     console.log("국제 공항 갯수A :  "+resultA.rows);
+            //     callback(null,resultA);
+            // })
         },
         function(callback){
-            models.Airportschedule.findAndCountAll({
-                where:{
-                    boardingKor:req.body.interarrive,
-                    arrivedKor:req.body.interdepart
-                }
-            }).then(function(resultB){
-                if(!resultB){
-                    res.redirect('booking/international1');
-                }
-                console.log("국제 공항 갯수B :  "+resultB.count);
-                callback(null,resultB);
-            })
+            // models.Airportschedule.findAndCountAll({
+            //     where:{
+            //         boardingKor:req.body.interarrive,
+            //         arrivedKor:req.body.interdepart
+            //     }
+            // }).then(function(resultB){
+            //     if(!resultB){
+            //         res.redirect('booking/international1');
+            //     }
+            //     console.log("국제 공항 갯수B :  "+resultB.count);
+            //     callback(null,resultB);
+            // })
         }
     ],function(error,results){
         if(error){
@@ -84,4 +83,3 @@ exports.international2= (req,res)=>{
 
 
 };
-

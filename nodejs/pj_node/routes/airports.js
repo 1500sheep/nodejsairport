@@ -1,4 +1,3 @@
-const models = require('./models');
 const async = require('async');
 const parseString = require("xml2js").parseString;
 var request = require('request');
@@ -36,25 +35,25 @@ exports.airports2 = (req,res)=>{
                 console.log(error);
                 res.redirect('airports1');
             }
-            models.Ichairport.findAndCountAll({
-                where:{
-                    scheduleDateTime:{
-                        $like:result+'%'
-                    }
-                }
-            }).then(function(results){
-                if(!results){
-                    res.redirect('airports1');
-                }
-                console.log("갯수 :  "+results.count);
-                res.render('airports2',{
-                    title:'Airport API with Nodejs',
-                    name:sess.name,
-                    airportstatus:2,
-                    count:results.count,
-                    info:results.rows
-                });
-            })
+            // models.Ichairport.findAndCountAll({
+            //     where:{
+            //         scheduleDateTime:{
+            //             $like:result+'%'
+            //         }
+            //     }
+            // }).then(function(results){
+            //     if(!results){
+            //         res.redirect('airports1');
+            //     }
+            //     console.log("갯수 :  "+results.count);
+            //     res.render('airports2',{
+            //         title:'Airport API with Nodejs',
+            //         name:sess.name,
+            //         airportstatus:2,
+            //         count:results.count,
+            //         info:results.rows
+            //     });
+            // })
 
     });
 }

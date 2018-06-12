@@ -11,7 +11,6 @@ const checkreserv = require('./checkreserv');
 const request = require('request');
 const parseString = require('xml2js').parseString;
 const dt = new Date();
-const models = require('./models');
 var today;
 
 var moment = require('moment');
@@ -25,19 +24,19 @@ console.log()
 var task = [
     function(callback){
     console.log("1111111111111");
-        models.Airportschedule.findOne({
-                where:{
-                    day:'2018-01-12'
-                }
-            },function(error,data){
-            console.log("222222222222");
-                if(error || !data){
-                    console.log("ERROR : "+error);
-                    callback(null,false);
-                }else{
-                    callback(null,true);
-                }
-        });
+        // models.Airportschedule.findOne({
+        //         where:{
+        //             day:'2018-01-12'
+        //         }
+        //     },function(error,data){
+        //     console.log("222222222222");
+        //         if(error || !data){
+        //             console.log("ERROR : "+error);
+        //             callback(null,false);
+        //         }else{
+        //             callback(null,true);
+        //         }
+        // });
     },
     function(data,callback){
         if(!data){

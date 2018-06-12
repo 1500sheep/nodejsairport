@@ -1,4 +1,3 @@
-const models = require('./models');
 const async = require('async');
 const parseString = require("xml2js").parseString;
 const request = require('request');
@@ -79,4 +78,3 @@ exports.domestic2 = (req,res)=>{
         });
     });
 };
-

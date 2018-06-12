@@ -1,5 +1,3 @@
-const models = require('./models');
-
 exports.main= (req, res) => {
     var sess;
     sess = req.session;
@@ -27,30 +25,30 @@ exports.signinPost = (req,res)=>{
     var name = req.body.name || '';
     var password = req.body.password || '';
 
-        models.User.findOne({
-        where: {
-            name: name
-        }
-    }).then(function(user){
-
-
-        if(user==null){
-            res.render('signin',{message:'Incorrect name'});
-            return ;
-        }
-        if(user.password!=password){
-            res.render('signin',{message:'Incorrect password'});
-            return ;
-        }
-        req.session.name = name;
-
-        console.log("로그인 name : "+name);
-        res.render('index',
-            {
-                title:'Airport API with Nodejs',
-                name : name
-            });
-    });
+    //     models.User.findOne({
+    //     where: {
+    //         name: name
+    //     }
+    // }).then(function(user){
+    //
+    //
+    //     if(user==null){
+    //         res.render('signin',{message:'Incorrect name'});
+    //         return ;
+    //     }
+    //     if(user.password!=password){
+    //         res.render('signin',{message:'Incorrect password'});
+    //         return ;
+    //     }
+    //     req.session.name = name;
+    //
+    //     console.log("로그인 name : "+name);
+    //     res.render('index',
+    //         {
+    //             title:'Airport API with Nodejs',
+    //             name : name
+    //         });
+    // });
 
 
 
@@ -84,26 +82,24 @@ exports.signupPost = (req,res)=>{
     var name = req.body.name || '';
     var password = req.body.password || '';
     console.log("name is : "+name+"\t password is : "+password);
-    models.User.findOne({
-        where: {
-            name: name
-        }
-    }).then(function(user){
-        if(user!=null){
-            res.render('signin',{message:'The name already exists'});
-            return ;
-        }
-
-        models.User.create(
-            {
-                name:name,
-                password:password
-            }).then(function(){
-            res.render('signin',{message:'Sign Up Succeed'});
-            return;
-        })
-
-    });
+    // models.User.findOne({
+    //     where: {
+    //         name: name
+    //     }
+    // }).then(function(user){
+    //     if(user!=null){
+    //         res.render('signin',{message:'The name already exists'});
+    //         return ;
+    //     }
+    //
+    //     models.User.create(
+    //         {
+    //             name:name,
+    //             password:password
+    //         }).then(function(){
+    //         res.render('signin',{message:'Sign Up Succeed'});
+    //         return;
+    //     })
+    //
+    // });
 };
-
-
