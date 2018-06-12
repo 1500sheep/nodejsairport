@@ -3,6 +3,7 @@ const parseString = require("xml2js").parseString;
 var request = require('request');
 const requestapi = require('./requestapi');
 const controller = require('./user.controller');
+const tibero = require('../apis/odbc');
 
 exports.airports1 = (req,res)=>{
     var sess;
@@ -35,6 +36,21 @@ exports.airports2 = (req,res)=>{
                 console.log(error);
                 res.redirect('airports1');
             }
+            tibero.IchairportFindAndCountAll({
+              "result" : result
+            }, results => {
+                if(!results){
+                    res.redirect('airports1');
+                }
+                console.log("갯수 :  "+results.count);
+                res.render('airports2',{
+                    title:'Airport API with Nodejs',
+                    name:sess.name,
+                    airportstatus:2,
+                    count:results.count,
+                    info:results.rows
+                });
+            });
             // models.Ichairport.findAndCountAll({
             //     where:{
             //         scheduleDateTime:{
